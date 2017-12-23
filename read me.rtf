@@ -1,0 +1,83 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf100
+{\fonttbl\f0\froman\fcharset0 Times-Roman;\f1\fmodern\fcharset0 Courier;\f2\froman\fcharset0 TimesNewRomanPSMT;
+\f3\fnil\fcharset0 HelveticaNeue;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red255\green255\blue255;\red0\green0\blue109;
+\red14\green115\blue192;\red255\green255\blue255;\red10\green77\blue204;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;\cssrgb\c100000\c100000\c100000;\cssrgb\c0\c0\c50196;
+\cssrgb\c0\c53333\c80000;\cssrgb\c100000\c100000\c100000;\cssrgb\c1176\c40000\c83922;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\sl500\partightenfactor0
+
+\f0\b\fs52 \cf2 \cb3 \expnd0\expndtw0\kerning0
+Machine learning Project----automatic music genre classification\
+\pard\pardeftab720\sl291\qr\partightenfactor0
+
+\f1\b0\fs24 \cf4 \
+\pard\pardeftab720\sl420\partightenfactor0
+
+\f0\b\fs44 \cf2 MainGoal: Music genre classification\
+\pard\pardeftab720\sl291\qr\partightenfactor0
+
+\f1\b0\fs24 \cf4 \
+\pard\pardeftab720\sl280\qj\partightenfactor0
+
+\f0 \cf2 Data Resource: "GTZAN Genre Collection" with 10 genres and 100 tracks in each class.\
+\pard\pardeftab720\sl291\qr\partightenfactor0
+
+\f1 \cf4 \
+\pard\pardeftab720\sl280\qj\partightenfactor0
+
+\f0 \cf2 Resource Website:\'a0{\field{\*\fldinst{HYPERLINK "http://marsyasweb.appspot.com/download/data_sets/"}}{\fldrslt \cf5 \ul \ulc5 http://marsyasweb.appspot.com/download/data_sets/}}\cf5 \ul \ulc5 \
+\
+\pard\pardeftab720\sl280\qj\partightenfactor0
+
+\f2\fs22 \cf2 \cb6 Original edition: {\field{\*\fldinst{HYPERLINK "https://github.com/zhuqinghahaha/project_machine-leanring/blob/master/Project-music%252Bgenre%252Bclassification%252B.ipynb"}}{\fldrslt \ulc2 \outl0\strokewidth0 \strokec7 Project-music%2Bgenre%2Bclassification%2B.ipynb}}\
+\
+\pard\pardeftab720\sl340\partightenfactor0
+\cf2 \ulnone \outl0\strokewidth0 \strokec7 Revised edition: {\field{\*\fldinst{HYPERLINK "https://github.com/zhuqinghahaha/project_machine-leanring/blob/master/Project-music%2Bgenre%2Bclassification%2B.ipynb"}}{\fldrslt Project-music+genre+classification+.ipynb}}
+\f0\fs24 \cf2 \cb3 \outl0\strokewidth0 \
+\pard\pardeftab720\sl291\qr\partightenfactor0
+
+\f1 \cf4 \
+\pard\pardeftab720\sl420\partightenfactor0
+
+\f0\b\fs44 \cf2 Procedures:\
+\pard\pardeftab720\sl291\qr\partightenfactor0
+
+\f1\b0\fs24 \cf4 \
+\pard\pardeftab720\sl280\qj\partightenfactor0
+
+\f0 \cf2 1.Features extration from the audio files\
+\pard\pardeftab720\sl291\qr\partightenfactor0
+
+\f1 \cf4 \
+\pard\pardeftab720\sl280\qj\partightenfactor0
+
+\f0 \cf2 Using library librosa to which has many useful functions for music feature extraction.\
+Features we used in this demo include mfccs, chroma energy,tempo(BPM), RMSE and ZCR. For mfccs and chroma, it should be a 2D matrix, but we didn't use the whole matrix instead we take the mean value over time as our features.\
+\pard\pardeftab720\sl291\qr\partightenfactor0
+
+\f1 \cf4 \
+\pard\pardeftab720\sl280\qj\partightenfactor0
+
+\f0 \cf2 2.Traning and Testing\
+\pard\pardeftab720\sl291\qr\partightenfactor0
+
+\f1 \cf4 \
+\pard\pardeftab720\sl280\qj\partightenfactor0
+
+\f0 \cf2 For each class, we have a 100(tracks)*35(feature values) data matrix.For it takes quite a while to extract features, so we save the matrixes into .mat files. So we don't need to run the extraction process over again.\
+We 'vstack' the 10 matrixes into one as X, and we label each class(blues=0, classical=1...rock=9) to generate a label vector y. Function 'train_test_split' in sklearn is used to divide X and y in to train and test sets. We used 800 samples for training and 200 for testing. Xtr and Xts are normalized over columns before training.\
+\
+Multilayer Perceptron (MLP) was used for our multi-class softmax classification. We have print the model summary in this demo. We use Adam(lr=0.001) as optimizer and 'sparse_categorical_crossentropy' as loss function.\
+\
+\pard\pardeftab720\sl280\partightenfactor0
+\cf2 In another way, we use the built-in function MLPClassifier in library sklearn.nerual_network to perform the classification and test data prediction. We shuffle and divide the data matrix X,y for 5 times, and for each trial we print the confusion matrix and its hot-map to show the results. We also generate a confusion matrix which counts across all the 5 trials, it shows a result overall.3. Results analysisThe accuracy of the classification is about 0.65~0.7. Some ways to boost the accuracy: a. Apply more tracks into the data set, we only have 1000 music tracks for 10 genres classification. b. Use high dimensional features, in this demo, the feature matrixes we use are 2D. c. If we have high dimensional features, then we have more choices of nerual network like CNN, LSTM and so on.\
+\pard\pardeftab720\sl340\qr\partightenfactor0
+
+\f1\fs28 \cf4 \
+\pard\pardeftab720\sl320\partightenfactor0
+
+\f3 \cf2 \
+}
